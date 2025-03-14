@@ -56,6 +56,18 @@ class StrongNode extends ElementNode {
       parentStyle?.merge(_defaultStrongStyle) ?? _defaultStrongStyle;
 }
 
+class StrongConfig implements InlineConfig {
+  final TextStyle style;
+
+  const StrongConfig({this.style = const TextStyle(backgroundColor: Color(0xCCeff1f3))});
+
+  static StrongConfig get darkConfig => StrongConfig(style: const TextStyle(backgroundColor: Color(0xCC555555)));
+
+  @nonVirtual
+  @override
+  String get tag => MarkdownTag.code.name;
+}
+
 ///Tag: [MarkdownTag.em]
 ///
 /// emphasis, Markdown treats asterisks (*) and underscores (_) as indicators of emphasis

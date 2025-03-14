@@ -143,6 +143,7 @@ class MarkdownConfig {
 
   ImgConfig get img =>
       _getConfig<ImgConfig>(MarkdownTag.img, const ImgConfig());
+  StrongConfig get strong => _getConfig<StrongConfig>(MarkdownTag.strong, const StrongConfig());
 
   CheckBoxConfig get input =>
       _getConfig<CheckBoxConfig>(MarkdownTag.input, const CheckBoxConfig());
