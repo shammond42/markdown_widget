@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:markdown_widget/markdown_widget.dart';
 import '../../../config/configs.dart';
 import '../../span_node.dart';
 
@@ -13,11 +14,14 @@ class ParagraphNode extends ElementNode {
 
   @override
   InlineSpan build() {
-    return TextSpan(
-        children: List.generate(children.length, (index) {
-      final child = children[index];
-      return child.build();
-    }));
+    return WidgetSpan(
+        child: Container(
+            margin: pConfig.margin,
+            child: ProxyRichText(TextSpan(
+                children: List.generate(children.length, (index) {
+              final child = children[index];
+              return child.build();
+            })))));
   }
 
   @override
@@ -27,11 +31,11 @@ class ParagraphNode extends ElementNode {
 ///config class for paragraphs, tag: p
 class PConfig implements LeafConfig {
   final TextStyle textStyle;
+  final EdgeInsetsGeometry margin;
 
-  const PConfig({this.textStyle = const TextStyle(fontSize: 16)});
+  const PConfig({this.textStyle = const TextStyle(fontSize: 16), this.margin = const EdgeInsets.only(bottom: 8)});
 
-  static PConfig get darkConfig =>
-      PConfig(textStyle: const TextStyle(fontSize: 16));
+  static PConfig get darkConfig => PConfig(textStyle: const TextStyle(fontSize: 16));
 
   @nonVirtual
   @override
